@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Cadastro de colaboradores da cooperativa Raízes do Futuro." />
+    <title>Cadastro | Raízes do Futuro</title>
+
+    <style>
+        :root {
+            --verde-escuro: #1f5c38;
+            --verde: #3d8b4f;
+            --verde-claro: #dff1df;
+            --areia: #f6f1e7;
+            --laranja: #d9782d;
+            --texto: #203126;
+            --branco: #ffffff;
+            --erro: #b42318;
+            --sombra: 0 8px 22px rgba(31, 92, 56, 0.12);
+            --raio: 14px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: var(--texto);
+            background: var(--areia);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid #1d6ed8;
+            outline-offset: 2px;
+        }
+
+        .container {
+            width: min(1040px, 92%);
+            margin: 0 auto;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -50px;
+            left: 1rem;
+            padding: 0.7rem 1rem;
+            color: var(--branco);
+            background: var(--verde-escuro);
+            z-index: 10;
+        }
+
+        .skip-link:focus {
+            top: 1rem;
+        }
+
+        .topo {
+            color: var(--branco);
+            background: linear-gradient(130deg, var(--verde-escuro), var(--verde));
+        }
+
+        .topo-conteudo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            min-height: 76px;
+        }
+
+        .marca {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.15rem;
+        }
+
+        .marca-icone {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            font-size: 1.35rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+            color: var(--branco);
+            background: transparent;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .menu ul {
+            display: flex;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .menu a {
+            display: inline-block;
+            padding: 0.5rem 0.7rem;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .menu a:hover,
+        .menu a[aria-current="page"] {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        main {
+            padding: 3rem 0;
+        }
+
+        .introducao {
+            max-width: 760px;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            margin-bottom: 0.5rem;
+            color: var(--verde-escuro);
+            font-size: clamp(2rem, 5vw, 3rem);
+        }
+
+        .formulario {
+            padding: 1.5rem;
+            border-radius: var(--raio);
+            background: var(--branco);
+            box-shadow: var(--sombra);
+        }
+
+        fieldset {
+            margin: 0 0 1.5rem;
+            padding: 1.25rem;
+            border: 1px solid #b8d5bd;
+            border-radius: 10px;
+        }
+
+        fieldset:last-of-type {
+            margin-bottom: 1rem;
+        }
+
+        legend {
+            padding: 0 0.4rem;
+            color: var(--verde-escuro);
+            font-weight: bold;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .campo-completo {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            min-height: 44px;
+            border: 1px solid #7a977f;
+            border-radius: 8px;
+            padding: 0.7rem;
+            color: var(--texto);
+            background: var(--branco);
+            font: inherit;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        input:invalid:not(:placeholder-shown) {
+            border-color: var(--erro);
+        }
+
+        .ajuda {
+            margin: 0;
+            color: #46624b;
+            font-size: 0.875rem;
+        }
+
+        .opcoes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+        }
+
+        .opcao {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .opcao input {
+            width: auto;
+            min-height: auto;
+        }
+
+        .termos {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            margin-bottom: 1rem;
+        }
+
+        .termos input {
+            width: auto;
+            min-height: auto;
+            margin-top: 0.3rem;
+        }
+
+        .botao {
+            border: 0;
+            border-radius: 8px;
+            padding: 0.85rem 1.2rem;
+            color: var(--branco);
+            background: var(--laranja);
+            font: inherit;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .botao:hover {
+            background: #b85d19;
+        }
+
+        .mensagem-sucesso {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            color: #134b25;
+            background: var(--verde-claro);
+            font-weight: bold;
+        }
+
+        .mensagem-sucesso.visivel {
+            display: block;
+        }
+
+        .rodape {
+            padding: 2rem 0;
+            color: var(--branco);
+            background: #163e27;
+        }
+
+        .rodape p {
+            margin: 0;
+        }
+
+        @media (max-width: 800px) {
+            .topo-conteudo {
+                flex-wrap: wrap;
+                padding: 0.8rem 0;
+            }
+
+            .menu-toggle {
+                display: inline-block;
+            }
+
+            .menu {
+                display: none;
+                width: 100%;
+            }
+
+            .menu.aberto {
+                display: block;
+            }
+
+            .menu ul {
+                flex-direction: column;
+                padding-top: 0.5rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .campo-completo {
+                grid-column: auto;
+            }
+
+            .formulario {
+                padding: 1rem;
+            }
+
+            fieldset {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+    <header class="topo">
+        <div class="container topo-conteudo">
+            <a class="marca" href="index.html" aria-label="Página inicial da Raízes do Futuro">
+                <span class="marca-icone" aria-hidden="true">🌱</span>
+                Raízes do Futuro
+            </a>
+
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+                Menu
+            </button>
+
+            <nav id="menu-principal" class="menu" aria-label="Navegação principal">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="projetos.html">Projetos</a></li>
+                    <li><a href="cadastro.html" aria-current="page">Seja colaborador(a)</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo-principal" class="container">
+        <section class="introducao" aria-labelledby="titulo-cadastro">
+            <h1 id="titulo-cadastro">Cadastro de colaboradores</h1>
+            <p>
+                Preencha seus dados para receber informações sobre formações, produtos
+                orgânicos, voluntariado e ações da cooperativa.
+            </p>
+        </section>
+
+        <form id="formulario-cadastro" class="formulario" novalidate>
+            <fieldset>
+                <legend>Dados pessoais</legend>
+
+                <div class="grid">
+                    <div class="campo campo-completo">
+                        <label for="nome">Nome completo *</label>
+                        <input id="nome" name="nome" type="text" autocomplete="name"
+                            placeholder="Digite seu nome completo" minlength="3" required />
+                    </div>
+
+                    <div class="campo">
+                        <label for="cpf">CPF *</label>
+                        <input id="cpf" name="cpf" type="text" inputmode="numeric" autocomplete="off"
+                            placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" maxlength="14" required
+                            aria-describedby="ajuda-cpf" />
+                        <p id="ajuda-cpf" class="ajuda">Formato obrigatório: 000.000.000-00</p>
+                    </div>
+
+                    <div class="campo">
+                        <label for="nascimento">Data de nascimento *</label>
+                        <input id="nascimento" name="nascimento" type="date" autocomplete="bday" required />
+                    </div>
+
+                    <div class="campo">
+                        <label for="email">E-mail *</label>
+                        <input id="email" name="email" type="email" autocomplete="email" placeholder="nome@exemplo.com"
+                            required />
+                    </div>
+
+                    <div class="campo">
+                        <label for="telefone">Telefone *</label>
+                        <input id="telefone" name="telefone" type="tel" inputmode="tel" autocomplete="tel"
+                            placeholder="(00) 00000-0000" pattern="\(\d{2}\)\s\d{4,5}-\d{4}" maxlength="15" required
+                            aria-describedby="ajuda-telefone" />
+                        <p id="ajuda-telefone" class="ajuda">
+                            Formato obrigatório: (00) 00000-0000
+                        </p>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Endereço</legend>
+
+                <div class="grid">
+                    <div class="campo">
+                        <label for="cep">CEP *</label>
+                        <input id="cep" name="cep" type="text" inputmode="numeric" autocomplete="postal-code"
+                            placeholder="00000-000" pattern="\d{5}-\d{3}" maxlength="9" required
+                            aria-describedby="ajuda-cep" />
+                        <p id="ajuda-cep" class="ajuda">Formato obrigatório: 00000-000</p>
+                    </div>
+
+                    <div class="campo">
+                        <label for="cidade">Cidade *</label>
+                        <input id="cidade" name="cidade" type="text" autocomplete="address-level2" required />
+                    </div>
+
+                    <div class="campo">
+                        <label for="estado">Estado *</label>
+                        <select id="estado" name="estado" autocomplete="address-level1" required>
+                            <option value="">Selecione</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+
+                    <div class="campo campo-completo">
+                        <label for="endereco">Endereço *</label>
+                        <input id="endereco" name="endereco" type="text" autocomplete="street-address"
+                            placeholder="Rua, número e complemento" required />
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Como deseja colaborar?</legend>
+
+                <div class="campo">
+                    <span id="interesse-label">Áreas de interesse *</span>
+
+                    <div class="opcoes" role="group" aria-labelledby="interesse-label">
+                        <label class="opcao">
+                            <input type="checkbox" name="interesses" value="formacoes" required />
+                            Formações
+                        </label>
+
+                        <label class="opcao">
+                            <input type="checkbox" name="interesses" value="produtos-organicos" />
+                            Produtos orgânicos
+                        </label>
+
+                        <label class="opcao">
+                            <input type="checkbox" name="interesses" value="voluntariado" />
+                            Voluntariado
+                        </label>
+
+                        <label class="opcao">
+                            <input type="checkbox" name="interesses" value="greenit" />
+                            GreenIT
+                        </label>
+                    </div>
+
+                    <p class="ajuda">Selecione ao menos uma opção.</p>
+                </div>
+
+                <div class="campo" style="margin-top: 1rem;">
+                    <label for="mensagem">Mensagem ou sugestão</label>
+                    <textarea id="mensagem" name="mensagem" maxlength="500"
+                        placeholder="Conte-nos como gostaria de participar..."></textarea>
+                </div>
+            </fieldset>
+
+            <label class="termos">
+                <input id="termos" name="termos" type="checkbox" required />
+                <span>
+                    Concordo com o uso dos meus dados exclusivamente para contato e participação
+                    nas atividades da cooperativa. *
+                </span>
+            </label>
+
+            <button class="botao" type="submit">Enviar cadastro</button>
+
+            <p id="mensagem-sucesso" class="mensagem-sucesso" role="status" aria-live="polite"></p>
+        </form>
+    </main>
+
+    <footer class="rodape">
+        <div class="container">
+            <p><strong>Raízes do Futuro</strong> — Dados tratados com responsabilidade e respeito.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.querySelector(".menu-toggle");
+        const menu = document.querySelector(".menu");
+        const formulario = document.querySelector("#formulario-cadastro");
+        const mensagemSucesso = document.querySelector("#mensagem-sucesso");
+
+        const cpfInput = document.querySelector("#cpf");
+        const telefoneInput = document.querySelector("#telefone");
+        const cepInput = document.querySelector("#cep");
+        const checkboxesInteresse = document.querySelectorAll(
+            'input[name="interesses"]'
+        );
+
+        menuToggle.addEventListener("click", () => {
+            const menuAberto = menu.classList.toggle("aberto");
+
+            menuToggle.setAttribute("aria-expanded", String(menuAberto));
+            menuToggle.textContent = menuAberto ? "Fechar menu" : "Menu";
+        });
+
+        cpfInput.addEventListener("input", (event) => {
+            const numeros = event.target.value.replace(/\D/g, "").slice(0, 11);
+
+            event.target.value = numeros
+                .replace(/(\d{3})(\d)/, "$1.$2")
+                .replace(/(\d{3})(\d)/, "$1.$2")
+                .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+        });
+
+        telefoneInput.addEventListener("input", (event) => {
+            const numeros = event.target.value.replace(/\D/g, "").slice(0, 11);
+
+            if (numeros.length <= 10) {
+                event.target.value = numeros
+                    .replace(/(\d{2})(\d)/, "($1) $2")
+                    .replace(/(\d{4})(\d)/, "$1-$2");
+                return;
+            }
+
+            event.target.value = numeros
+                .replace(/(\d{2})(\d)/, "($1) $2")
+                .replace(/(\d{5})(\d)/, "$1-$2");
+        });
+
+        cepInput.addEventListener("input", (event) => {
+            const numeros = event.target.value.replace(/\D/g, "").slice(0, 8);
+
+            event.target.value = numeros.replace(/(\d{5})(\d)/, "$1-$2");
+        });
+
+        function validarInteresses() {
+            const algumInteresseSelecionado = [...checkboxesInteresse].some(
+                (checkbox) => checkbox.checked
+            );
+
+            checkboxesInteresse[0].setCustomValidity(
+                algumInteresseSelecionado
+                    ? ""
+                    : "Selecione pelo menos uma área de interesse."
+            );
+        }
+
+        checkboxesInteresse.forEach((checkbox) => {
+            checkbox.addEventListener("change", validarInteresses);
+        });
+
+        formulario.addEventListener("submit", (event) => {
+            validarInteresses();
+
+            if (!formulario.checkValidity()) {
+                event.preventDefault();
+                formulario.reportValidity();
+                return;
+            }
+
+            event.preventDefault();
+
+            mensagemSucesso.textContent =
+                "Cadastro enviado com sucesso! Em breve entraremos em contato.";
+            mensagemSucesso.classList.add("visivel");
+
+            formulario.reset();
+        });
+    </script>
+</body>
+
+</html>

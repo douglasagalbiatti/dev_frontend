@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Raízes do Futuro: cooperativa de agricultores orgânicos, formação, comércio justo e sustentabilidade." />
+    <title>Raízes do Futuro | Cooperativa Orgânica</title>
+
+    <style>
+        :root {
+            --verde-escuro: #1f5c38;
+            --verde: #3d8b4f;
+            --verde-claro: #dff1df;
+            --areia: #f6f1e7;
+            --laranja: #d9782d;
+            --texto: #203126;
+            --branco: #ffffff;
+            --sombra: 0 8px 22px rgba(31, 92, 56, 0.12);
+            --raio: 14px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: var(--texto);
+            background: var(--areia);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid #1d6ed8;
+            outline-offset: 3px;
+        }
+
+        .container {
+            width: min(1180px, 92%);
+            margin: 0 auto;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -50px;
+            left: 1rem;
+            padding: 0.7rem 1rem;
+            color: var(--branco);
+            background: var(--verde-escuro);
+            z-index: 10;
+        }
+
+        .skip-link:focus {
+            top: 1rem;
+        }
+
+        .topo {
+            color: var(--branco);
+            background: linear-gradient(130deg, var(--verde-escuro), var(--verde));
+        }
+
+        .topo-conteudo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            min-height: 76px;
+        }
+
+        .marca {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.15rem;
+        }
+
+        .marca-icone {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            font-size: 1.35rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+            color: var(--branco);
+            background: transparent;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .menu ul {
+            display: flex;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .menu a {
+            display: inline-block;
+            padding: 0.5rem 0.7rem;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .menu a:hover,
+        .menu a[aria-current="page"] {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .hero {
+            padding: 4rem 0;
+            color: var(--branco);
+            background:
+                linear-gradient(rgba(20, 65, 38, 0.78), rgba(20, 65, 38, 0.88)),
+                url("https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1600&q=80") center / cover;
+        }
+
+        .hero-conteudo {
+            max-width: 760px;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.15;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 1rem 0 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .botao {
+            display: inline-block;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            color: var(--branco);
+            background: var(--laranja);
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .botao:hover {
+            background: #b85d19;
+            transform: translateY(-2px);
+        }
+
+        .botao-secundario {
+            color: var(--verde-escuro);
+            background: var(--branco);
+            border-color: var(--verde-escuro);
+        }
+
+        .botao-secundario:hover {
+            color: var(--branco);
+            background: var(--verde-escuro);
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 2rem;
+            padding: 2.5rem 0;
+        }
+
+        .sidebar {
+            align-self: start;
+            padding: 1.25rem;
+            border-radius: var(--raio);
+            background: var(--branco);
+            box-shadow: var(--sombra);
+        }
+
+        .sidebar h2 {
+            margin-top: 0;
+            font-size: 1.2rem;
+        }
+
+        .sidebar nav {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 0.75rem;
+            border-radius: 8px;
+            color: var(--verde-escuro);
+            background: var(--verde-claro);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .sidebar a:hover {
+            color: var(--branco);
+            background: var(--verde);
+        }
+
+        .conteudo-principal {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .secao-titulo {
+            margin: 0;
+            color: var(--verde-escuro);
+            font-size: clamp(1.6rem, 3vw, 2.25rem);
+        }
+
+        .cartoes {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .cartao {
+            padding: 1.25rem;
+            border-radius: var(--raio);
+            background: var(--branco);
+            box-shadow: var(--sombra);
+        }
+
+        .cartao h3 {
+            margin-top: 0;
+            color: var(--verde-escuro);
+        }
+
+        .destaque {
+            padding: 1.5rem;
+            border-left: 6px solid var(--laranja);
+            border-radius: var(--raio);
+            background: var(--branco);
+            box-shadow: var(--sombra);
+        }
+
+        .destaque p:last-child {
+            margin-bottom: 0;
+        }
+
+        .metricas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .metrica {
+            padding: 1.25rem;
+            border-radius: var(--raio);
+            color: var(--branco);
+            background: var(--verde-escuro);
+            text-align: center;
+        }
+
+        .metrica strong {
+            display: block;
+            font-size: 2rem;
+        }
+
+        details {
+            border-radius: var(--raio);
+            background: var(--branco);
+            box-shadow: var(--sombra);
+        }
+
+        summary {
+            padding: 1rem 1.25rem;
+            color: var(--verde-escuro);
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        details p {
+            margin: 0;
+            padding: 0 1.25rem 1.25rem;
+        }
+
+        .contato-info {
+            padding: 1.5rem;
+            border-radius: var(--raio);
+            background: var(--branco);
+            box-shadow: var(--sombra);
+        }
+
+        .contato-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.25rem;
+            margin: 1.5rem 0;
+        }
+
+        .contato-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            background: var(--areia);
+        }
+
+        .contato-icone {
+            font-size: 1.5rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .contato-item strong {
+            display: block;
+            color: var(--verde-escuro);
+            margin-bottom: 0.25rem;
+        }
+
+        .contato-item p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .link-contato {
+            color: var(--verde-escuro);
+            font-weight: bold;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.2s ease;
+        }
+
+        .link-contato:hover {
+            color: var(--laranja);
+        }
+
+        .contato-acoes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.25rem;
+        }
+
+        .rodape {
+            padding: 2rem 0;
+            color: var(--branco);
+            background: #163e27;
+        }
+
+        .rodape-conteudo {
+            display: flex;
+            justify-content: space-between;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .rodape p {
+            margin: 0;
+        }
+
+        .rodape-contato {
+            margin-top: 0.5rem !important;
+            font-size: 0.95rem;
+            opacity: 0.92;
+        }
+
+        .rodape-contato a {
+            color: var(--branco);
+            text-decoration: underline;
+        }
+
+        .rodape-contato a:hover {
+            color: var(--laranja);
+        }
+
+        .rodape-acoes {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 800px) {
+            .topo-conteudo {
+                flex-wrap: wrap;
+                padding: 0.8rem 0;
+            }
+
+            .menu-toggle {
+                display: inline-block;
+            }
+
+            .menu {
+                display: none;
+                width: 100%;
+            }
+
+            .menu.aberto {
+                display: block;
+            }
+
+            .menu ul {
+                flex-direction: column;
+                padding-top: 0.5rem;
+            }
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .cartoes,
+            .metricas,
+            .contato-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rodape-conteudo {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+    <header class="topo">
+        <div class="container topo-conteudo">
+            <a class="marca" href="index.html" aria-label="Página inicial da Raízes do Futuro">
+                <span class="marca-icone" aria-hidden="true">🌱</span>
+                Raízes do Futuro
+            </a>
+
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+                Menu
+            </button>
+
+            <nav id="menu-principal" class="menu" aria-label="Navegação principal">
+                <ul>
+                    <li><a href="index.html" aria-current="page">Início</a></li>
+                    <li><a href="projetos.html">Projetos</a></li>
+                    <li><a href="cadastro.html">Seja colaborador(a)</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo-principal">
+        <section class="hero" aria-labelledby="titulo-principal">
+            <div class="container hero-conteudo">
+                <p>Cooperativa de agricultura orgânica e comércio justo</p>
+                <h1 id="titulo-principal">Cultivamos alimentos, conhecimento e comunidades sustentáveis.</h1>
+                <p>
+                    A Raízes do Futuro conecta agricultores familiares, consumidores conscientes
+                    e iniciativas de GreenIT para gerar impacto social e ambiental positivo.
+                </p>
+                <a class="botao" href="cadastro.html">Quero participar</a>
+            </div>
+        </section>
+
+        <div class="container layout">
+            <aside class="sidebar" aria-label="Ações rápidas">
+                <h2>Ações rápidas</h2>
+                <nav>
+                    <a href="#historia">Nossa história</a>
+                    <a href="#impacto">Nosso impacto</a>
+                    <a href="projetos.html">Conheça os projetos</a>
+                    <a href="cadastro.html">Cadastre-se</a>
+                    <a href="#contato">Fale conosco</a>
+                </nav>
+            </aside>
+
+            <div class="conteudo-principal">
+                <section id="historia" aria-labelledby="titulo-historia">
+                    <h2 id="titulo-historia" class="secao-titulo">Nossa história</h2>
+
+                    <article class="destaque">
+                        <p>
+                            A Raízes do Futuro nasceu da união entre famílias agricultoras que
+                            desejavam valorizar a produção orgânica local e ampliar o acesso a
+                            alimentos saudáveis.
+                        </p>
+                        <p>
+                            Hoje, promovemos formações técnicas, aproximamos produtores e clientes
+                            e adotamos práticas de GreenIT, priorizando soluções digitais acessíveis,
+                            eficientes e com menor impacto ambiental.
+                        </p>
+                    </article>
+                </section>
+
+                <section aria-labelledby="titulo-pilares">
+                    <h2 id="titulo-pilares" class="secao-titulo">Como geramos transformação</h2>
+
+                    <div class="cartoes">
+                        <article class="cartao">
+                            <h3>Formação</h3>
+                            <p>
+                                Oficinas sobre cultivo agroecológico, gestão cooperativa, compostagem e
+                                tecnologia sustentável.
+                            </p>
+                        </article>
+
+                        <article class="cartao">
+                            <h3>Comércio justo</h3>
+                            <p>
+                                Venda direta de alimentos orgânicos, fortalecendo a renda de pequenos
+                                produtores e a confiança dos consumidores.
+                            </p>
+                        </article>
+
+                        <article class="cartao">
+                            <h3>GreenIT</h3>
+                            <p>
+                                Uso consciente de tecnologia, redução de desperdício digital e
+                                incentivo a equipamentos com maior eficiência energética.
+                            </p>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="impacto" aria-labelledby="titulo-impacto">
+                    <h2 id="titulo-impacto" class="secao-titulo">Impacto coletivo</h2>
+
+                    <div class="metricas">
+                        <article class="metrica">
+                            <strong>86</strong>
+                            famílias produtoras
+                        </article>
+
+                        <article class="metrica">
+                            <strong>1.250+</strong>
+                            clientes conscientes
+                        </article>
+
+                        <article class="metrica">
+                            <strong>32</strong>
+                            formações realizadas
+                        </article>
+                    </div>
+                </section>
+
+                <section aria-labelledby="titulo-greenit">
+                    <h2 id="titulo-greenit" class="secao-titulo">Tecnologia a favor da terra</h2>
+
+                    <details>
+                        <summary>Como a cooperativa aplica GreenIT?</summary>
+                        <p>
+                            Priorizamos páginas leves, comunicação digital objetiva, redução de
+                            impressões desnecessárias, descarte responsável de eletrônicos e
+                            equipamentos de baixo consumo energético.
+                        </p>
+                    </details>
+                </section>
+
+                <section id="contato" aria-labelledby="titulo-contato">
+                    <h2 id="titulo-contato" class="secao-titulo">Informações de Contato</h2>
+
+                    <div class="contato-info">
+                        <p>
+                            Ficou com alguma dúvida, quer conhecer de perto a cooperativa,
+                            adquirir cestas orgânicas ou apoiar os nossos projetos? Entre em contato conosco!
+                        </p>
+
+                        <div class="contato-grid">
+                            <article class="contato-item">
+                                <span class="contato-icone" aria-hidden="true">📍</span>
+                                <div>
+                                    <strong>Endereço da Cooperativa</strong>
+                                    <p>Estrada da Agroecologia, 1200 - Zona Rural<br />São Paulo - SP, CEP: 04890-000
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="contato-item">
+                                <span class="contato-icone" aria-hidden="true">📞</span>
+                                <div>
+                                    <strong>Telefone e WhatsApp</strong>
+                                    <p>
+                                        <a class="link-contato" href="tel:+5511987654321">(11) 98765-4321</a> /
+                                        <a class="link-contato" href="tel:+551134567890">(11) 3456-7890</a>
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="contato-item">
+                                <span class="contato-icone" aria-hidden="true">✉️</span>
+                                <div>
+                                    <strong>E-mail Institucional</strong>
+                                    <p>
+                                        <a class="link-contato"
+                                            href="mailto:contato@raizesdofuturo.coop.br">contato@raizesdofuturo.coop.br</a>
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="contato-item">
+                                <span class="contato-icone" aria-hidden="true">⏰</span>
+                                <div>
+                                    <strong>Horário de Atendimento</strong>
+                                    <p>Segunda a Sexta: 08h às 17h<br />Sábados: 08h às 12h</p>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div class="contato-acoes">
+                            <a class="botao" href="mailto:contato@raizesdofuturo.coop.br">Enviar mensagem por e-mail</a>
+                            <a class="botao botao-secundario" href="tel:+5511987654321">Falar pelo WhatsApp</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <div class="container rodape-conteudo">
+            <div>
+                <p><strong>Raízes do Futuro</strong> — Agricultura orgânica, cooperação e inovação sustentável.</p>
+                <p class="rodape-contato">
+                    Contato: <a href="mailto:contato@raizesdofuturo.coop.br">contato@raizesdofuturo.coop.br</a> | Tel:
+                    <a href="tel:+5511987654321">(11) 98765-4321</a>
+                </p>
+            </div>
+            <div class="rodape-acoes">
+                <a class="botao botao-secundario" href="#contato">Fale conosco</a>
+                <a class="botao" href="projetos.html">Ver iniciativas</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.querySelector(".menu-toggle");
+        const menu = document.querySelector(".menu");
+
+        menuToggle.addEventListener("click", () => {
+            const menuAberto = menu.classList.toggle("aberto");
+
+            menuToggle.setAttribute("aria-expanded", String(menuAberto));
+            menuToggle.textContent = menuAberto ? "Fechar menu" : "Menu";
+        });
+    </script>
+</body>
+
+</html>
