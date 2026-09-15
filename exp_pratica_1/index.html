@@ -251,12 +251,37 @@
             color: var(--verde-escuro);
         }
 
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
         .destaque {
             padding: 1.5rem;
             border-left: 6px solid var(--laranja);
             border-radius: var(--raio);
             background: var(--branco);
             box-shadow: var(--sombra);
+        }
+
+        .destaque-midia {
+            margin: 0 0 1.25rem 0;
+        }
+
+        .imagem-destaque {
+            width: 100%;
+            max-height: 380px;
+            object-fit: cover;
+            border-radius: calc(var(--raio) - 4px);
+            box-shadow: 0 4px 14px rgba(31, 92, 56, 0.1);
+        }
+
+        .legenda-imagem {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #4a6352;
+            font-style: italic;
         }
 
         .destaque p:last-child {
@@ -494,6 +519,17 @@
                     <h2 id="titulo-historia" class="secao-titulo">Nossa história</h2>
 
                     <article class="destaque">
+                        <figure class="destaque-midia">
+                            <img class="imagem-destaque"
+                                src="img/agricultura-familiar.jpg"
+                                alt="Alimentos orgânicos frescos como cenouras, pepinos e pimentões colhidos pela agricultura familiar"
+                                width="800"
+                                height="450"
+                                loading="lazy" />
+                            <figcaption class="legenda-imagem">
+                                Produção agroecológica e alimentos orgânicos cultivados pelos cooperados da Raízes do Futuro.
+                            </figcaption>
+                        </figure>
                         <p>
                             A Raízes do Futuro nasceu da união entre famílias agricultoras que
                             desejavam valorizar a produção orgânica local e ampliar o acesso a
