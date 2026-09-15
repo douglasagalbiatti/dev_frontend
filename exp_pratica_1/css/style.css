@@ -7,7 +7,7 @@
    1. Variáveis Globais (:root) & Reset
    ========================================================================== */
 :root {
-    --verde-escuro: #1f5c38;
+    --verde-escuro: #d9781b;
     --verde: #3d8b4f;
     --verde-claro: #dff1df;
     --areia: #f6f1e7;
@@ -60,7 +60,65 @@ h2 {
 }
 
 /* ==========================================================================
-   2. Layout Base & Cabeçalho (Topo e Navegação)
+   2. Sistema de Grid Responsivo de 12 Colunas (CSS Grid)
+   ========================================================================== */
+.grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.25rem;
+}
+
+/* Classes utilitárias para spans de 1 a 12 colunas */
+.col-1 {
+    grid-column: span 1;
+}
+
+.col-2 {
+    grid-column: span 2;
+}
+
+.col-3 {
+    grid-column: span 3;
+}
+
+.col-4 {
+    grid-column: span 4;
+}
+
+.col-5 {
+    grid-column: span 5;
+}
+
+.col-6 {
+    grid-column: span 6;
+}
+
+.col-7 {
+    grid-column: span 7;
+}
+
+.col-8 {
+    grid-column: span 8;
+}
+
+.col-9 {
+    grid-column: span 9;
+}
+
+.col-10 {
+    grid-column: span 10;
+}
+
+.col-11 {
+    grid-column: span 11;
+}
+
+.col-12 {
+    grid-column: span 12;
+}
+
+/* ==========================================================================
+   3. Layout Base & Cabeçalho (Topo e Navegação)
    ========================================================================== */
 .container {
     width: min(1180px, 92%);
@@ -149,7 +207,7 @@ h2 {
 }
 
 /* ==========================================================================
-   3. Componentes Comuns (Botões)
+   4. Componentes Comuns (Botões)
    ========================================================================== */
 .botao {
     display: inline-block;
@@ -182,7 +240,7 @@ h2 {
 }
 
 /* ==========================================================================
-   4. Página Inicial (index.html)
+   5. Página Inicial (index.html) - Baseada no Grid de 12 Colunas
    ========================================================================== */
 .hero {
     padding: 4rem 0;
@@ -208,14 +266,17 @@ h2 {
     font-size: 1.1rem;
 }
 
+/* Layout Geral: Grid de 12 Colunas */
 .layout {
     display: grid;
-    grid-template-columns: 260px 1fr;
+    grid-template-columns: repeat(12, 1fr);
     gap: 2rem;
     padding: 2.5rem 0;
 }
 
+/* Sidebar ocupa 3 de 12 colunas (25%) */
 .sidebar {
+    grid-column: span 3;
     align-self: start;
     padding: 1.25rem;
     border-radius: var(--raio);
@@ -248,7 +309,9 @@ h2 {
     background: var(--verde);
 }
 
+/* Conteúdo Principal ocupa 9 de 12 colunas (75%) -> 3 + 9 = 12 */
 .conteudo-principal {
+    grid-column: span 9;
     display: grid;
     gap: 1.5rem;
 }
@@ -259,13 +322,15 @@ h2 {
     font-size: clamp(1.6rem, 3vw, 2.25rem);
 }
 
+/* Cartões: Grid de 12 Colunas (3 cartões x 4 colunas = 12) */
 .cartoes {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(12, 1fr);
     gap: 1rem;
 }
 
 .cartao {
+    grid-column: span 4;
     padding: 1.25rem;
     border-radius: var(--raio);
     background: var(--branco);
@@ -308,13 +373,15 @@ h2 {
     margin-bottom: 0;
 }
 
+/* Métricas: Grid de 12 Colunas (3 itens x 4 colunas = 12) */
 .metricas {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(12, 1fr);
     gap: 1rem;
 }
 
 .metrica {
+    grid-column: span 4;
     padding: 1.25rem;
     border-radius: var(--raio);
     color: var(--branco);
@@ -352,14 +419,16 @@ details p {
     box-shadow: var(--sombra);
 }
 
+/* Grid de Contato: Grid de 12 Colunas (2 itens x 6 colunas = 12) */
 .contato-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(12, 1fr);
     gap: 1.25rem;
     margin: 1.5rem 0;
 }
 
 .contato-item {
+    grid-column: span 6;
     display: flex;
     align-items: flex-start;
     gap: 1rem;
@@ -405,7 +474,7 @@ details p {
 }
 
 /* ==========================================================================
-   5. Página de Projetos (projetos.html)
+   6. Página de Projetos (projetos.html) - Baseada no Grid de 12 Colunas
    ========================================================================== */
 main {
     padding: 3rem 0;
@@ -421,13 +490,15 @@ main {
     font-size: clamp(2rem, 5vw, 3rem);
 }
 
+/* Projetos: Grid de 12 Colunas (3 projetos x 4 colunas = 12) */
 .projetos-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(12, 1fr);
     gap: 1.25rem;
 }
 
 .projeto {
+    grid-column: span 4;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -482,7 +553,7 @@ main {
 }
 
 /* ==========================================================================
-   6. Página de Cadastro (cadastro.html)
+   7. Página de Cadastro (cadastro.html) - Baseada no Grid de 12 Colunas
    ========================================================================== */
 .introducao {
     max-width: 760px;
@@ -518,20 +589,24 @@ legend {
     font-weight: bold;
 }
 
+/* Grid do Formulário: 12 Colunas */
 .grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(12, 1fr);
     gap: 1rem;
 }
 
+/* Campos padrão ocupam 6 de 12 colunas (metade da linha -> 6 + 6 = 12) */
 .campo {
+    grid-column: span 6;
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
 }
 
+/* Campos completos ocupam 12 de 12 colunas (linha inteira) */
 .campo-completo {
-    grid-column: 1 / -1;
+    grid-column: span 12;
 }
 
 .campo-mensagem {
@@ -615,7 +690,7 @@ input:invalid:not(:placeholder-shown) {
 }
 
 /* ==========================================================================
-   7. Rodapé
+   8. Rodapé
    ========================================================================== */
 .rodape {
     padding: 2rem 0;
@@ -656,7 +731,7 @@ input:invalid:not(:placeholder-shown) {
 }
 
 /* ==========================================================================
-   8. Responsividade (Media Queries)
+   9. Responsividade (Media Queries) - Colapso do Grid de 12 Colunas
    ========================================================================== */
 @media (max-width: 800px) {
     .topo-conteudo {
@@ -682,34 +757,33 @@ input:invalid:not(:placeholder-shown) {
         padding-top: 0.5rem;
     }
 
-    /* Página Inicial */
-    .layout {
-        grid-template-columns: 1fr;
-    }
-
-    .cartoes,
-    .metricas,
-    .contato-grid {
-        grid-template-columns: 1fr;
+    /* No modo responsivo mobile, todos os elementos ocupam as 12 colunas completas */
+    .sidebar,
+    .conteudo-principal,
+    .cartao,
+    .metrica,
+    .contato-item,
+    .projeto,
+    .campo,
+    .campo-completo,
+    .col-1,
+    .col-2,
+    .col-3,
+    .col-4,
+    .col-5,
+    .col-6,
+    .col-7,
+    .col-8,
+    .col-9,
+    .col-10,
+    .col-11,
+    .col-12 {
+        grid-column: span 12;
     }
 
     .rodape-conteudo {
         flex-direction: column;
         align-items: flex-start;
-    }
-
-    /* Página de Projetos */
-    .projetos-grid {
-        grid-template-columns: 1fr;
-    }
-
-    /* Página de Cadastro */
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .campo-completo {
-        grid-column: auto;
     }
 
     .formulario {
