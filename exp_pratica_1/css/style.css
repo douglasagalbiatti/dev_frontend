@@ -1,0 +1,722 @@
+/* ==========================================================================
+   RAÍZES DO FUTURO - COOPERATIVA ORGÂNICA
+   Arquivo Principal de Estilos (CSS3)
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Variáveis Globais (:root) & Reset
+   ========================================================================== */
+:root {
+    --verde-escuro: #1f5c38;
+    --verde: #3d8b4f;
+    --verde-claro: #dff1df;
+    --areia: #f6f1e7;
+    --laranja: #d9782d;
+    --texto: #203126;
+    --branco: #ffffff;
+    --erro: #b42318;
+    --sombra: 0 8px 22px rgba(31, 92, 56, 0.12);
+    --raio: 14px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--texto);
+    background: var(--areia);
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #1d6ed8;
+    outline-offset: 2px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+h1,
+h2 {
+    color: var(--verde-escuro);
+}
+
+/* ==========================================================================
+   2. Layout Base & Cabeçalho (Topo e Navegação)
+   ========================================================================== */
+.container {
+    width: min(1180px, 92%);
+    margin: 0 auto;
+}
+
+.container-cadastro {
+    width: min(1040px, 92%);
+}
+
+.skip-link {
+    position: absolute;
+    top: -50px;
+    left: 1rem;
+    padding: 0.7rem 1rem;
+    color: var(--branco);
+    background: var(--verde-escuro);
+    z-index: 10;
+}
+
+.skip-link:focus {
+    top: 1rem;
+}
+
+.topo {
+    color: var(--branco);
+    background: linear-gradient(130deg, var(--verde-escuro), var(--verde));
+}
+
+.topo-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 76px;
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.15rem;
+}
+
+.marca-icone {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    font-size: 1.35rem;
+}
+
+.menu-toggle {
+    display: none;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    color: var(--branco);
+    background: transparent;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.menu ul {
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menu a {
+    display: inline-block;
+    padding: 0.5rem 0.7rem;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.menu a:hover,
+.menu a[aria-current="page"] {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+/* ==========================================================================
+   3. Componentes Comuns (Botões)
+   ========================================================================== */
+.botao {
+    display: inline-block;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--branco);
+    background: var(--laranja);
+    font: inherit;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.botao:hover {
+    background: #b85d19;
+    transform: translateY(-2px);
+}
+
+.botao-secundario {
+    color: var(--verde-escuro);
+    background: var(--branco);
+    border-color: var(--verde-escuro);
+}
+
+.botao-secundario:hover {
+    color: var(--branco);
+    background: var(--verde-escuro);
+}
+
+/* ==========================================================================
+   4. Página Inicial (index.html)
+   ========================================================================== */
+.hero {
+    padding: 4rem 0;
+    color: var(--branco);
+    background:
+        linear-gradient(rgba(20, 65, 38, 0.78), rgba(20, 65, 38, 0.88)),
+        url("https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1600&q=80") center / cover;
+}
+
+.hero-conteudo {
+    max-width: 760px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.15;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: 1rem 0 1.5rem;
+    font-size: 1.1rem;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+}
+
+.sidebar {
+    align-self: start;
+    padding: 1.25rem;
+    border-radius: var(--raio);
+    background: var(--branco);
+    box-shadow: var(--sombra);
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+.sidebar nav {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.sidebar a {
+    display: block;
+    padding: 0.75rem;
+    border-radius: 8px;
+    color: var(--verde-escuro);
+    background: var(--verde-claro);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.sidebar a:hover {
+    color: var(--branco);
+    background: var(--verde);
+}
+
+.conteudo-principal {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.secao-titulo {
+    margin: 0;
+    color: var(--verde-escuro);
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+}
+
+.cartoes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.cartao {
+    padding: 1.25rem;
+    border-radius: var(--raio);
+    background: var(--branco);
+    box-shadow: var(--sombra);
+}
+
+.cartao h3 {
+    margin-top: 0;
+    color: var(--verde-escuro);
+}
+
+.destaque {
+    padding: 1.5rem;
+    border-left: 6px solid var(--laranja);
+    border-radius: var(--raio);
+    background: var(--branco);
+    box-shadow: var(--sombra);
+}
+
+.destaque-midia {
+    margin: 0 0 1.25rem 0;
+}
+
+.imagem-destaque {
+    width: 100%;
+    max-height: 380px;
+    object-fit: cover;
+    border-radius: calc(var(--raio) - 4px);
+    box-shadow: 0 4px 14px rgba(31, 92, 56, 0.1);
+}
+
+.legenda-imagem {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #4a6352;
+    font-style: italic;
+}
+
+.destaque p:last-child {
+    margin-bottom: 0;
+}
+
+.metricas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.metrica {
+    padding: 1.25rem;
+    border-radius: var(--raio);
+    color: var(--branco);
+    background: var(--verde-escuro);
+    text-align: center;
+}
+
+.metrica strong {
+    display: block;
+    font-size: 2rem;
+}
+
+details {
+    border-radius: var(--raio);
+    background: var(--branco);
+    box-shadow: var(--sombra);
+}
+
+summary {
+    padding: 1rem 1.25rem;
+    color: var(--verde-escuro);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+details p {
+    margin: 0;
+    padding: 0 1.25rem 1.25rem;
+}
+
+.contato-info {
+    padding: 1.5rem;
+    border-radius: var(--raio);
+    background: var(--branco);
+    box-shadow: var(--sombra);
+}
+
+.contato-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+}
+
+.contato-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background: var(--areia);
+}
+
+.contato-icone {
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.contato-item strong {
+    display: block;
+    color: var(--verde-escuro);
+    margin-bottom: 0.25rem;
+}
+
+.contato-item p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.link-contato {
+    color: var(--verde-escuro);
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+}
+
+.link-contato:hover {
+    color: var(--laranja);
+}
+
+.contato-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+/* ==========================================================================
+   5. Página de Projetos (projetos.html)
+   ========================================================================== */
+main {
+    padding: 3rem 0;
+}
+
+.cabecalho-pagina {
+    max-width: 800px;
+    margin-bottom: 2rem;
+}
+
+.cabecalho-pagina h1 {
+    margin-bottom: 0.5rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.projetos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.projeto {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--raio);
+    background: var(--branco);
+    box-shadow: var(--sombra);
+}
+
+.projeto-imagem {
+    display: grid;
+    place-items: center;
+    min-height: 160px;
+    color: var(--branco);
+    background: linear-gradient(140deg, var(--verde), var(--verde-escuro));
+    font-size: 3.5rem;
+}
+
+.projeto-conteudo {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 1.25rem;
+}
+
+.projeto h2 {
+    margin-top: 0;
+    font-size: 1.35rem;
+}
+
+.tag {
+    display: inline-block;
+    width: fit-content;
+    margin-top: auto;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    color: var(--verde-escuro);
+    background: var(--verde-claro);
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.chamada {
+    margin-top: 2.5rem;
+    padding: 2rem;
+    border-radius: var(--raio);
+    color: var(--branco);
+    background: var(--verde-escuro);
+}
+
+.chamada .botao {
+    margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   6. Página de Cadastro (cadastro.html)
+   ========================================================================== */
+.introducao {
+    max-width: 760px;
+    margin-bottom: 1.5rem;
+}
+
+.introducao h1 {
+    margin-bottom: 0.5rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.formulario {
+    padding: 1.5rem;
+    border-radius: var(--raio);
+    background: var(--branco);
+    box-shadow: var(--sombra);
+}
+
+fieldset {
+    margin: 0 0 1.5rem;
+    padding: 1.25rem;
+    border: 1px solid #b8d5bd;
+    border-radius: 10px;
+}
+
+fieldset:last-of-type {
+    margin-bottom: 1rem;
+}
+
+legend {
+    padding: 0 0.4rem;
+    color: var(--verde-escuro);
+    font-weight: bold;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.campo-completo {
+    grid-column: 1 / -1;
+}
+
+.campo-mensagem {
+    margin-top: 1rem;
+}
+
+label {
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid #7a977f;
+    border-radius: 8px;
+    padding: 0.7rem;
+    color: var(--texto);
+    background: var(--branco);
+    font: inherit;
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+input:invalid:not(:placeholder-shown) {
+    border-color: var(--erro);
+}
+
+.ajuda {
+    margin: 0;
+    color: #46624b;
+    font-size: 0.875rem;
+}
+
+.opcoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.2rem;
+}
+
+.opcao {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.opcao input {
+    width: auto;
+    min-height: auto;
+}
+
+.termos {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin-bottom: 1rem;
+}
+
+.termos input {
+    width: auto;
+    min-height: auto;
+    margin-top: 0.3rem;
+}
+
+.mensagem-sucesso {
+    display: none;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    color: #134b25;
+    background: var(--verde-claro);
+    font-weight: bold;
+}
+
+.mensagem-sucesso.visivel {
+    display: block;
+}
+
+/* ==========================================================================
+   7. Rodapé
+   ========================================================================== */
+.rodape {
+    padding: 2rem 0;
+    color: var(--branco);
+    background: #163e27;
+}
+
+.rodape-conteudo {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.rodape p {
+    margin: 0;
+}
+
+.rodape-contato {
+    margin-top: 0.5rem !important;
+    font-size: 0.95rem;
+    opacity: 0.92;
+}
+
+.rodape-contato a {
+    color: var(--branco);
+    text-decoration: underline;
+}
+
+.rodape-contato a:hover {
+    color: var(--laranja);
+}
+
+.rodape-acoes {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   8. Responsividade (Media Queries)
+   ========================================================================== */
+@media (max-width: 800px) {
+    .topo-conteudo {
+        flex-wrap: wrap;
+        padding: 0.8rem 0;
+    }
+
+    .menu-toggle {
+        display: inline-block;
+    }
+
+    .menu {
+        display: none;
+        width: 100%;
+    }
+
+    .menu.aberto {
+        display: block;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        padding-top: 0.5rem;
+    }
+
+    /* Página Inicial */
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cartoes,
+    .metricas,
+    .contato-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rodape-conteudo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Página de Projetos */
+    .projetos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Página de Cadastro */
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .campo-completo {
+        grid-column: auto;
+    }
+
+    .formulario {
+        padding: 1rem;
+    }
+
+    fieldset {
+        padding: 1rem;
+    }
+}
