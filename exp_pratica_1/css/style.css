@@ -731,12 +731,26 @@ input:invalid:not(:placeholder-shown) {
 }
 
 /* ==========================================================================
-   9. Responsividade (Media Queries) - Colapso do Grid de 12 Colunas
+   9. Responsividade - 5 Breakpoints Oficiais (Media Queries)
    ========================================================================== */
-@media (max-width: 800px) {
+
+/* --------------------------------------------------------------------------
+   Breakpoint 1: Extra Small (xs) - Dispositivos Móveis Pequenos (< 576px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 575.98px) {
     .topo-conteudo {
         flex-wrap: wrap;
-        padding: 0.8rem 0;
+        padding: 0.75rem 0;
+    }
+
+    .marca {
+        font-size: 1.05rem;
+    }
+
+    .marca-icone {
+        width: 36px;
+        height: 36px;
+        font-size: 1.15rem;
     }
 
     .menu-toggle {
@@ -757,7 +771,7 @@ input:invalid:not(:placeholder-shown) {
         padding-top: 0.5rem;
     }
 
-    /* No modo responsivo mobile, todos os elementos ocupam as 12 colunas completas */
+    /* Colapso total: todos os elementos ocupam as 12 colunas completas */
     .sidebar,
     .conteudo-principal,
     .cartao,
@@ -781,9 +795,13 @@ input:invalid:not(:placeholder-shown) {
         grid-column: span 12;
     }
 
-    .rodape-conteudo {
-        flex-direction: column;
-        align-items: flex-start;
+    .layout,
+    .cartoes,
+    .metricas,
+    .contato-grid,
+    .projetos-grid,
+    .grid {
+        gap: 0.85rem;
     }
 
     .formulario {
@@ -791,6 +809,432 @@ input:invalid:not(:placeholder-shown) {
     }
 
     fieldset {
-        padding: 1rem;
+        padding: 0.85rem;
+    }
+
+    .hero {
+        padding: 2.5rem 0;
+    }
+
+    .hero h1 {
+        font-size: 1.85rem;
+    }
+
+    .rodape-conteudo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoint 2: Small (sm) - Celulares Grandes e Paisagem (576px a 767.98px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .menu-toggle {
+        display: inline-block;
+    }
+
+    .menu {
+        display: none;
+        width: 100%;
+    }
+
+    .menu.aberto {
+        display: block;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        padding-top: 0.5rem;
+    }
+
+    /* Componentes principais em 12 colunas */
+    .sidebar,
+    .conteudo-principal,
+    .cartao,
+    .metrica,
+    .projeto {
+        grid-column: span 12;
+    }
+
+    /* Formulário permite divisão de 2 colunas (span 6) */
+    .campo {
+        grid-column: span 6;
+    }
+
+    .campo-completo {
+        grid-column: span 12;
+    }
+
+    .contato-item {
+        grid-column: span 12;
+    }
+
+    .rodape-conteudo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Classes utilitárias sm */
+    .col-sm-1 {
+        grid-column: span 1;
+    }
+
+    .col-sm-2 {
+        grid-column: span 2;
+    }
+
+    .col-sm-3 {
+        grid-column: span 3;
+    }
+
+    .col-sm-4 {
+        grid-column: span 4;
+    }
+
+    .col-sm-5 {
+        grid-column: span 5;
+    }
+
+    .col-sm-6 {
+        grid-column: span 6;
+    }
+
+    .col-sm-7 {
+        grid-column: span 7;
+    }
+
+    .col-sm-8 {
+        grid-column: span 8;
+    }
+
+    .col-sm-9 {
+        grid-column: span 9;
+    }
+
+    .col-sm-10 {
+        grid-column: span 10;
+    }
+
+    .col-sm-11 {
+        grid-column: span 11;
+    }
+
+    .col-sm-12 {
+        grid-column: span 12;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoint 3: Medium (md) - Tablets (768px a 991.98px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .menu-toggle {
+        display: inline-block;
+    }
+
+    .menu {
+        display: none;
+        width: 100%;
+    }
+
+    .menu.aberto {
+        display: block;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        padding-top: 0.5rem;
+    }
+
+    /* Layout da Home: sidebar 4 colunas + conteúdo 8 colunas = 12 */
+    .sidebar {
+        grid-column: span 4;
+    }
+
+    .conteudo-principal {
+        grid-column: span 8;
+    }
+
+    /* Cartões e Projetos em 2 colunas de 6 (span 6) */
+    .cartao,
+    .projeto {
+        grid-column: span 6;
+    }
+
+    .metrica {
+        grid-column: span 4;
+    }
+
+    .contato-item {
+        grid-column: span 6;
+    }
+
+    .campo {
+        grid-column: span 6;
+    }
+
+    .campo-completo {
+        grid-column: span 12;
+    }
+
+    /* Classes utilitárias md */
+    .col-md-1 {
+        grid-column: span 1;
+    }
+
+    .col-md-2 {
+        grid-column: span 2;
+    }
+
+    .col-md-3 {
+        grid-column: span 3;
+    }
+
+    .col-md-4 {
+        grid-column: span 4;
+    }
+
+    .col-md-5 {
+        grid-column: span 5;
+    }
+
+    .col-md-6 {
+        grid-column: span 6;
+    }
+
+    .col-md-7 {
+        grid-column: span 7;
+    }
+
+    .col-md-8 {
+        grid-column: span 8;
+    }
+
+    .col-md-9 {
+        grid-column: span 9;
+    }
+
+    .col-md-10 {
+        grid-column: span 10;
+    }
+
+    .col-md-11 {
+        grid-column: span 11;
+    }
+
+    .col-md-12 {
+        grid-column: span 12;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoint 4: Large (lg) - Desktops e Laptops (992px a 1199.98px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    .menu {
+        display: block;
+        width: auto;
+    }
+
+    .menu ul {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    /* Grid de 12 colunas padrão */
+    .sidebar {
+        grid-column: span 3;
+    }
+
+    .conteudo-principal {
+        grid-column: span 9;
+    }
+
+    .cartao,
+    .projeto {
+        grid-column: span 4;
+    }
+
+    .metrica {
+        grid-column: span 4;
+    }
+
+    .contato-item {
+        grid-column: span 6;
+    }
+
+    .campo {
+        grid-column: span 6;
+    }
+
+    .campo-completo {
+        grid-column: span 12;
+    }
+
+    /* Classes utilitárias lg */
+    .col-lg-1 {
+        grid-column: span 1;
+    }
+
+    .col-lg-2 {
+        grid-column: span 2;
+    }
+
+    .col-lg-3 {
+        grid-column: span 3;
+    }
+
+    .col-lg-4 {
+        grid-column: span 4;
+    }
+
+    .col-lg-5 {
+        grid-column: span 5;
+    }
+
+    .col-lg-6 {
+        grid-column: span 6;
+    }
+
+    .col-lg-7 {
+        grid-column: span 7;
+    }
+
+    .col-lg-8 {
+        grid-column: span 8;
+    }
+
+    .col-lg-9 {
+        grid-column: span 9;
+    }
+
+    .col-lg-10 {
+        grid-column: span 10;
+    }
+
+    .col-lg-11 {
+        grid-column: span 11;
+    }
+
+    .col-lg-12 {
+        grid-column: span 12;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Breakpoint 5: Extra Large (xl) - Telas Grandes e Widescreen (≥ 1200px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1200px) {
+    .container {
+        width: 1180px;
+        margin: 0 auto;
+    }
+
+    .container-cadastro {
+        width: 1040px;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .menu {
+        display: block;
+        width: auto;
+    }
+
+    .menu ul {
+        display: flex;
+        flex-direction: row;
+        gap: 1.25rem;
+    }
+
+    .layout {
+        gap: 2.5rem;
+    }
+
+    .sidebar {
+        grid-column: span 3;
+    }
+
+    .conteudo-principal {
+        grid-column: span 9;
+    }
+
+    .cartao,
+    .projeto {
+        grid-column: span 4;
+    }
+
+    .metrica {
+        grid-column: span 4;
+    }
+
+    .contato-item {
+        grid-column: span 6;
+    }
+
+    .campo {
+        grid-column: span 6;
+    }
+
+    .campo-completo {
+        grid-column: span 12;
+    }
+
+    /* Classes utilitárias xl */
+    .col-xl-1 {
+        grid-column: span 1;
+    }
+
+    .col-xl-2 {
+        grid-column: span 2;
+    }
+
+    .col-xl-3 {
+        grid-column: span 3;
+    }
+
+    .col-xl-4 {
+        grid-column: span 4;
+    }
+
+    .col-xl-5 {
+        grid-column: span 5;
+    }
+
+    .col-xl-6 {
+        grid-column: span 6;
+    }
+
+    .col-xl-7 {
+        grid-column: span 7;
+    }
+
+    .col-xl-8 {
+        grid-column: span 8;
+    }
+
+    .col-xl-9 {
+        grid-column: span 9;
+    }
+
+    .col-xl-10 {
+        grid-column: span 10;
+    }
+
+    .col-xl-11 {
+        grid-column: span 11;
+    }
+
+    .col-xl-12 {
+        grid-column: span 12;
     }
 }
